@@ -1,11 +1,13 @@
 import { Component } from '@angular/core';
-
+import { Storage } from '@ionic/storage';
+import { CommonService } from '../../providers/common-service';
 import { HomePage } from '../home/home';
 import { AboutPage } from '../about/about';
 import { ContactPage } from '../contact/contact';
 
 @Component({
-  templateUrl: 'tabs.html'
+  templateUrl: 'tabs.html',
+  providers: [Storage, CommonService]
 })
 export class TabsPage {
   // this tells the tabs component which Pages
