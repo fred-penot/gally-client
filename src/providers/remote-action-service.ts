@@ -13,16 +13,29 @@ export class RemoteActionService {
 
     }
 
-    getAction() {
+    getAction(tabs) {
+        let currentTab = 'remote';
         let interval = Observable.interval(1000);
         this.interval = interval.subscribe(() => {
             this.commonService.getDataApi(this.routeGetAction).then(data => {
                 if (data['data']['data']['action'] != '') {
-                    console.log(data['data']['data']['action']);
-                    if (data['data']['data']['action'] == 'vocal') {
-                        this.interval.unsubscribe();
-                        clearInterval(this.interval);
-                        console.log('== terminé == ');
+                    let action = data['data']['data']['action'];
+                    if (action == 'remote' || action == 'vocal') {
+                        if (currentTab != action) {
+                            if (action == 'vocal') {
+                                tabs.select(1);
+                            } else if (action == 'remote') {
+                                tabs.select(0);
+                            }
+                        }
+                        currentTab = action;
+                    } else {
+                        if (currentTab == 'remote') {
+                            console.log('== mode remote == ');
+                        } else if (currentTab == 'vocal') {
+                            console.log('== mode vocal == ');
+                        }
+                        console.log(action);
                     }
                 }
             });
