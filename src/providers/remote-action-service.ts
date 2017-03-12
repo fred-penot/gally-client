@@ -32,10 +32,12 @@ export class RemoteActionService {
                     } else {
                         if (currentTab == 'remote') {
                             console.log('== mode remote == ');
+                            console.log(action);
                         } else if (currentTab == 'vocal') {
                             console.log('== mode vocal == ');
+                            let stringDiscussion = action.replace('£', '?');
+                            console.log(JSON.parse(stringDiscussion));
                         }
-                        console.log(action);
                     }
                 }
             });

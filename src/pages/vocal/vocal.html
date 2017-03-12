@@ -7,5 +7,15 @@
 </ion-header>
 
 <ion-content padding>
-
+  <ion-list>
+    <ion-list-header>
+      <ion-icon name="ios-chatbubbles" item-left></ion-icon>
+      Discussion
+    </ion-list-header>
+    <ion-item *ngFor="let element of discussion">
+      <ion-icon name="{{element.icon}}" item-left></ion-icon>
+      <h2>{{element.user}}</h2>
+      <p>{{element.sentence}}</p>
+    </ion-item>
+  </ion-list>
 </ion-content>
